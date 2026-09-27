@@ -78,9 +78,7 @@ export async function initWhatsAppLocal() {
       console.log('--- RAW BAILEYS MESSAGE INTERCEPTED ---');
       console.log(JSON.stringify({ key: msg.key, pushName: msg.pushName, participant: msg.participant }, null, 2));
       
-      // Use remoteJidAlt (the real phone number) if it exists, otherwise fallback to remoteJid
-      const effectiveJid = (msg.key as any).remoteJidAlt || remoteJid;
-      const customerNumber = effectiveJid?.split('@')[0].split(':')[0];
+      const customerNumber = remoteJid?.split('@')[0].split(':')[0];
       if (!customerNumber) return;
 
       const isFromMe = msg.key.fromMe;
